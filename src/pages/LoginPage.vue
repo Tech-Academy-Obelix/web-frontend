@@ -1,6 +1,6 @@
 <script setup>
 import { reactive, ref } from 'vue'
-import user from 'stores/user'
+import { useUserStore } from 'stores/user'
 
 let credentials = reactive({
   email: '',
@@ -8,11 +8,12 @@ let credentials = reactive({
 })
 
 let isLoggingIn = ref(false)
+const userStore = useUserStore()
 
 async function handleSignIn() {
   isLoggingIn.value = true
-  await user.login(credentials.email, credentials.password)
-  isLoggingIn.value = user.isLoggedIn.value
+  await userStore.login(credentials.email, credentials.password)
+  isLoggingIn.value = userStore.isLoggedIn
 }
 </script>
 
@@ -20,9 +21,9 @@ async function handleSignIn() {
   <q-page class="bg-light-green row justify-center items-center">
     <div class="column">
       <div class="row justify-center">
-        <h5 class="text-h5 text-white q-my-md">Sign in to Obelix Homework Platform</h5>
+        <h5 class="text-h5 text-white q-my-md">Login to Obelix Homework Platform</h5>
       </div>
-      <div class="row">
+      <div class="row justify-center">
         <q-card square bordered class="q-pa-lg shadow-1">
           <q-card-section>
             <q-form class="q-gutter-md">
@@ -50,7 +51,7 @@ async function handleSignIn() {
               color="light-green-7"
               size="lg"
               class="full-width"
-              label="Sign in"
+              label="Log in"
               @click="handleSignIn"
               :disable="!credentials.email || !credentials.password"
               :loading="isLoggingIn"
@@ -64,7 +65,6 @@ async function handleSignIn() {
           </q-card-section>
 
           <q-separator />
-
         </q-card>
       </div>
     </div>

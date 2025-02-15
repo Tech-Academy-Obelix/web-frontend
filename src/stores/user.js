@@ -1,7 +1,27 @@
-import { ref, computed } from 'vue'
+import { defineStore, acceptHMRUpdate } from 'pinia'
 
-const current = ref(null)
+export const useUserStore = defineStore('user', {
+  state: () => ({
+    account: null,
+  }),
 
-export default {
-  isLoggedIn: computed(() => current.value !== null),
+  getters: {
+    isLoggedIn: (state) => state.account !== null,
+  },
+
+  actions: {
+    async init() {
+      // fetch user
+    },
+    async login() {
+      // login
+    },
+    async register() {
+      // register
+    }
+  },
+})
+
+if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate(useUserStore, import.meta.hot))
 }

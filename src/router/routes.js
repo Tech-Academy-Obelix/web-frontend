@@ -23,7 +23,7 @@ const routes = [
       {
         path: 'register',
         name: 'register',
-        component: () => import('pages/LoginPage.vue'),
+        component: () => import('pages/RegisterPage.vue'),
       },
     ],
     meta: { requiresAnonymous: true },
