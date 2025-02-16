@@ -63,8 +63,6 @@ async function handleSignIn() {
               <router-link to="/register">Register</router-link>
             </p>
           </q-card-section>
-
-          <q-separator />
         </q-card>
       </div>
     </div>

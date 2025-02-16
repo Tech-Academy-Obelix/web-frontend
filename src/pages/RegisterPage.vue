@@ -101,10 +101,6 @@ async function handleRegister() {
               <router-link to="/login">Sign in</router-link>
             </p>
           </q-card-section>
-
-          <q-separator />
-
-          <OAuth2Methods />
         </q-card>
       </div>
     </div>
