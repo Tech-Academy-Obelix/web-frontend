@@ -98,7 +98,7 @@ async function handleRegister() {
           <q-card-section class="text-center q-pa-none">
             <p class="text-grey-6">
               Already have an account?
-              <router-link to="/login">Sign in</router-link>
+              <router-link to="/login">Log in</router-link>
             </p>
           </q-card-section>
         </q-card>
