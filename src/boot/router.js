@@ -1,5 +1,5 @@
 import { defineBoot } from '#q-app/wrappers'
-import user from 'src/stores/oldUser'
+import user from 'src/stores/user'
 
 export default defineBoot(({ router }) => {
   // ===================================================================================================================
