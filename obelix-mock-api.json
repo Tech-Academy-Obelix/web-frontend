@@ -1,0 +1,102 @@
+{
+  "uuid": "bdaa571a-a948-4815-a563-3828078f86e0",
+  "lastMigration": 33,
+  "name": "Obelix mock api",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 4000,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "5c5f6252-f6e0-415d-9e0d-93b5cb8a809b",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "login",
+      "responses": [
+        {
+          "uuid": "571181b8-8508-46cf-8a5a-429cce750b74",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "5c5f6252-f6e0-415d-9e0d-93b5cb8a809b"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [
+    {
+      "uuid": "575d03c8-40b5-4575-90b3-74a5b6995d5d",
+      "id": "ya4v",
+      "name": "Users",
+      "documentation": "",
+      "value": "[\n  {\n    \"username\": \"dev\",\n    \"password\": \"1234\"\n  }\n]"
+    }
+  ],
+  "callbacks": []
+}
