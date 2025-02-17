@@ -1,4 +1,5 @@
 import { defineStore, acceptHMRUpdate } from 'pinia'
+import { api } from 'src/boot/axios'
 
 export const useUserStore = defineStore('user', {
   state: () => ({
@@ -6,19 +7,37 @@ export const useUserStore = defineStore('user', {
   }),
 
   getters: {
-    isLoggedIn: (state) => state.account !== null,
+    isLoggedIn() {
+      return this.account !== null
+    },
   },
 
   actions: {
     async init() {
       // fetch user
     },
-    async login() {
-      // login
+
+    /**
+     * @param {string} email
+     * @param {string} password
+     */
+    async login(email, password) {
+      const response = await api.post('/login', { email, password })
+      this.account = response.data
     },
+
+    async logout() {
+      // send session terminate to api
+      this.account = null
+    },
+
+    /**
+     * @param {string} email
+     * @param {string} password
+     */
     async register() {
       // register
-    }
+    },
   },
 })
 
