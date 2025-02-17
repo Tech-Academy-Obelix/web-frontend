@@ -15,7 +15,6 @@
     "checkVersion": "node --version"
   },
   "dependencies": {
-    "@quasar/cli": "^2.4.1",
     "@quasar/extras": "^1.16.4",
     "axios": "^1.2.1",
     "pinia": "^2.0.11",
@@ -26,6 +25,7 @@
   "devDependencies": {
     "@eslint/js": "^9.14.0",
     "@quasar/app-vite": "^2.0.0",
+    "@quasar/cli": "^2.4.1",
     "@vue/eslint-config-prettier": "^10.1.0",
     "autoprefixer": "^10.4.2",
     "eslint": "^9.14.0",
