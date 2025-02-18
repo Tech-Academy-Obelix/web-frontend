@@ -18,7 +18,7 @@ async function handleSignIn() {
 </script>
 
 <template>
-  <q-page class="bg-light-green row justify-center items-center">
+  <q-page class="bg-primary row justify-center items-center">
     <div class="column">
       <div class="row justify-center">
         <h5 class="text-h5 text-white q-my-md">Login to Obelix Homework Platform</h5>
@@ -48,7 +48,7 @@ async function handleSignIn() {
           <q-card-actions class="q-px-md">
             <q-btn
               unelevated
-              color="light-green-7"
+              color="accent"
               size="lg"
               class="full-width"
               label="Log in"

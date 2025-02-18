@@ -1,18 +1,20 @@
 import { defineBoot } from '#q-app/wrappers'
-import user from 'src/stores/user'
+import { useUserStore } from 'src/stores/user'
 
 export default defineBoot(({ router }) => {
+  const userStore = useUserStore()
+
   // ===================================================================================================================
   // Auth setup
   // ===================================================================================================================
   router.beforeEach((to) => {
-    if (to.meta.requiresAuthentication && !user.isLoggedIn.value) {
+    if (to.meta.requiresAuthentication && !userStore.isLoggedIn) {
       return {
         name: 'login',
         replace: true,
       }
     }
-    if (to.meta.requiresAnonymous && user.isLoggedIn.value) {
+    if (to.meta.requiresAnonymous && userStore.isLoggedIn) {
       return {
         name: 'index',
         replace: true,
