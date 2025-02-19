@@ -1,13 +1,37 @@
 <script setup>
 import { ref } from 'vue'
 import { useUserStore } from 'src/stores/user'
+import { useRouter } from 'vue-router'
 
 const userStore = useUserStore()
+const router = useRouter()
 
 const leftDrawerOpen = ref(false)
 function toggleLeftDrawer() {
     leftDrawerOpen.value = !leftDrawerOpen.value
 }
+
+const accountMenuItems = [
+    {
+        title: 'Account ',
+        icon: 'account_circle',
+        action: () => router.push({ name: 'account' }),
+        separator: true,
+    },
+    {
+        title: 'Logout',
+        icon: 'logout',
+        action: userStore.logout,
+    },
+]
+
+const sidebarItems = [
+    {
+        title: 'Home',
+        icon: 'home',
+        to: 'index',
+    },
+]
 </script>
 
 <template>
@@ -38,29 +62,33 @@ function toggleLeftDrawer() {
 
                     <q-menu fit>
                         <q-list>
-                            <q-item clickable>
-                                <q-item-section>View account</q-item-section>
-                                <q-item-section side @click="$router.push({ name: 'account' })">
-                                    <q-icon name="account_circle" />
-                                </q-item-section>
-                            </q-item>
-
-                            <q-separator />
-
-                            <q-item clickable @click="userStore.logout">
-                                <q-item-section> Logout</q-item-section>
-                                <q-item-section side @click="userStore.logout">
-                                    <q-icon name="logout" />
-                                </q-item-section>
-                            </q-item>
+                            <template v-for="(item, index) in accountMenuItems" :key="index">
+                                <q-item clickable @click="item.action">
+                                    <q-item-section>{{ item.title }}</q-item-section>
+                                    <q-item-section side>
+                                        <q-icon :name="item.icon" />
+                                    </q-item-section>
+                                </q-item>
+                                <q-separator v-if="item.separator" />
+                            </template>
                         </q-list>
                     </q-menu>
                 </q-item>
             </q-toolbar>
         </q-header>
 
-        <q-drawer show-if-above v-model="leftDrawerOpen" side="left" bordered>
-            <!-- drawer content -->
+        <q-drawer show-if-above v-model="leftDrawerOpen" side="left" elevated>
+            <q-list>
+                <template v-for="(item, index) in sidebarItems" :key="index">
+                    <q-item clickable :to="{ name: item.to }" @click="item.action">
+                        <q-item-section avatar>
+                            <q-icon :name="item.icon" />
+                        </q-item-section>
+                        <q-item-section>{{ item.title }}</q-item-section>
+                    </q-item>
+                    <q-separator v-if="item.separator" />
+                </template>
+            </q-list>
         </q-drawer>
 
         <q-page-container>
