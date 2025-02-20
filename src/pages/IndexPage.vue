@@ -31,7 +31,7 @@ const cards = [
                         <q-card-section class="text-h4">
                             {{ card.value }}
                         </q-card-section>
-                        <q-card-section> Grade </q-card-section>
+                        <q-card-section> {{ card.title }} </q-card-section>
                     </q-card>
                 </template>
             </div>
