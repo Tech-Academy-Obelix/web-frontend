@@ -16,17 +16,15 @@ const userStore = useUserStore()
 async function handleRegister() {
     isRegistering.value = true
     await userStore.register(
-        credentials.username,
         credentials.email,
-        credentials.password,
-        credentials.displayName,
+        credentials.inviteCode,
     )
     isRegistering.value = userStore.isLoggedIn
 }
 </script>
 
 <template>
-    <q-page class="bg-light-green row justify-center items-center">
+    <q-page class="bg-primary row justify-center items-center">
         <div class="column">
             <div class="row justify-center">
                 <h5 class="text-h5 text-white q-my-md">Register to Obelix Homework Platform</h5>
@@ -39,14 +37,6 @@ async function handleRegister() {
                                 square
                                 filled
                                 clearable
-                                v-model.trim="credentials.username"
-                                type="text"
-                                label="Username"
-                            />
-                            <q-input
-                                square
-                                filled
-                                clearable
                                 v-model.trim="credentials.email"
                                 type="email"
                                 label="Email"
@@ -55,32 +45,17 @@ async function handleRegister() {
                                 square
                                 filled
                                 clearable
-                                v-model="credentials.password"
-                                type="password"
-                                label="Password"
+                                v-model="credentials.inviteCode"
+                                type="invite-code"
+                                label="Invite Code"
                             />
-                            <q-input
-                                square
-                                filled
-                                clearable
-                                v-model="credentials.repeatPassword"
-                                type="password"
-                                label="Repeat password"
-                            />
-                            <q-input
-                                square
-                                filled
-                                clearable
-                                v-model="credentials.displayName"
-                                type="text"
-                                label="Display name"
-                            />
+                            
                         </q-form>
                     </q-card-section>
                     <q-card-actions class="q-px-md">
                         <q-btn
                             unelevated
-                            color="light-green-7"
+                            color="accent"
                             size="lg"
                             class="full-width"
                             label="Register"
