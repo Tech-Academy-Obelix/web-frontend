@@ -12,6 +12,14 @@ const api = axios.create({
     withCredentials: true,
 })
 
+api.interceptors.request.use((config) => {
+    const token = localStorage.getItem('AuthToken')
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`
+    }
+    return config
+})
+
 export default defineBoot(({ app }) => {
     // for use inside Vue files (Options API) through this.$axios and this.$api
 
