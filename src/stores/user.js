@@ -16,10 +16,14 @@ export const useUserStore = defineStore('user', {
         },
 
         async login(email, password) {
-            const response = await api.post('/login', { email, password })
-            const token = response.text()
-            localStorage.setItem('AuthToken', token)
-            this.account = response.data.user
+            try {
+                const response = await api.post('/login', { email, password })
+                const token = response.text()
+                localStorage.setItem('AuthToken', token)
+                this.account = response.data.user
+            } catch (error) {
+                console.error(error)
+            }
         },
         async register() {},
         async fetchUser() {},
