@@ -8,6 +8,12 @@ const routes = [
                 name: 'index',
                 component: () => import('pages/IndexPage.vue'),
             },
+            {
+                path: 'admin',
+                name: 'admin',
+                component: () => import('pages/AdminPage.vue'),
+                meta: { requiredRole: 'admin' },
+            }
         ],
         meta: { requiresAuthentication: true },
     },

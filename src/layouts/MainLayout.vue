@@ -31,6 +31,11 @@ const sidebarItems = [
         icon: 'home',
         to: 'index',
     },
+    {
+        title: 'Administrator Panel',
+        icon: '',
+        to: 'admin',
+    },
 ]
 </script>
 

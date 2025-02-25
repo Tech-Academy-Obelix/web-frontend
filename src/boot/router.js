@@ -20,5 +20,11 @@ export default defineBoot(({ router }) => {
                 replace: true,
             }
         }
+        if (to.meta.requiredRole && to.meta.requiredRole !== userStore.account.role ) {
+            return {
+                name: 'index',
+                replace: true,
+            }
+        }
     })
 })

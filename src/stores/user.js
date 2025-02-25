@@ -1,5 +1,5 @@
 import { defineStore, acceptHMRUpdate } from 'pinia'
-import { api } from 'src/boot/axios'
+import { LocalStorage } from 'quasar'
 
 export const useUserStore = defineStore('user', {
     state: () => ({
@@ -16,14 +16,7 @@ export const useUserStore = defineStore('user', {
         },
 
         async login(email, password) {
-            try {
-                const response = await api.post('/login', { email, password })
-                const token = response.text()
-                localStorage.setItem('AuthToken', token)
-                this.account = response.data.user
-            } catch (error) {
-                console.error(error)
-            }
+            
         },
         async register() {},
         async fetchUser() {},
