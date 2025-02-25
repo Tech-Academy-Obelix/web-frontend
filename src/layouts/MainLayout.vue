@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { useUserStore } from 'src/stores/user'
+import { useUserStore } from 'src/stores/user.js'
 import { useRouter } from 'vue-router'
 
 const userStore = useUserStore()
@@ -21,7 +21,10 @@ const accountMenuItems = [
     {
         title: 'Logout',
         icon: 'logout',
-        action: userStore.logout,
+        action: async () => {
+            await userStore.logout()
+            await router.push({ name: 'login' })
+        },
     },
 ]
 
@@ -42,7 +45,9 @@ const sidebarItems = [
 
                 <q-toolbar-title>
                     <q-avatar>
-                        <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg" />
+                        <img
+                            src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg"
+                        />
                     </q-avatar>
                     Obelix Homework Platform
                 </q-toolbar-title>
@@ -51,20 +56,31 @@ const sidebarItems = [
                     <q-item-section side>
                         <q-avatar>
                             <img
-                                style="object-fit: cover; width: 100%; height: 100%"
+                                style="
+                                    object-fit: cover;
+                                    width: 100%;
+                                    height: 100%;
+                                "
                                 src="https://media.gettyimages.com/id/154956399/photo/anonymous-front-silhouette.jpg?s=612x612&w=gi&k=20&c=eWkyNJBoWU3l_FBucKjuIxvs6whE0ZOSfm-wSiOzYkc="
                             />
                         </q-avatar>
                     </q-item-section>
                     <q-item-section>
-                        <q-item-label>{{ userStore.account.name }}</q-item-label>
+                        <q-item-label>{{
+                            userStore.account?.name
+                        }}</q-item-label>
                     </q-item-section>
 
                     <q-menu fit>
                         <q-list>
-                            <template v-for="(item, index) in accountMenuItems" :key="index">
+                            <template
+                                v-for="(item, index) in accountMenuItems"
+                                :key="index"
+                            >
                                 <q-item clickable @click="item.action">
-                                    <q-item-section>{{ item.title }}</q-item-section>
+                                    <q-item-section>{{
+                                        item.title
+                                    }}</q-item-section>
                                     <q-item-section side>
                                         <q-icon :name="item.icon" />
                                     </q-item-section>
@@ -80,7 +96,11 @@ const sidebarItems = [
         <q-drawer show-if-above v-model="leftDrawerOpen" side="left" elevated>
             <q-list>
                 <template v-for="(item, index) in sidebarItems" :key="index">
-                    <q-item clickable :to="{ name: item.to }" @click="item.action">
+                    <q-item
+                        clickable
+                        :to="{ name: item.to }"
+                        @click="item.action"
+                    >
                         <q-item-section avatar>
                             <q-icon :name="item.icon" />
                         </q-item-section>
