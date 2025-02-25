@@ -1,19 +1,27 @@
 <script setup>
 import { reactive, ref } from 'vue'
-import { useUserStore } from 'stores/user'
+import { useUserStore } from 'stores/user.js'
+import { useRouter } from 'vue-router'
 
 let credentials = reactive({
     email: '',
     password: '',
 })
 
-let isLoggingIn = ref(false)
+let loggingIn = ref(false)
 const userStore = useUserStore()
+const router = useRouter()
 
 async function handleSignIn() {
-    isLoggingIn.value = true
-    await userStore.login(credentials.email, credentials.password)
-    isLoggingIn.value = userStore.isLoggedIn
+    loggingIn.value = true
+    const { success } = await userStore.login(
+        credentials.email,
+        credentials.password,
+    )
+    loggingIn.value = userStore.isLoggedIn
+    if (success) {
+        await router.push({ name: 'index' })
+    }
 }
 </script>
 
@@ -21,7 +29,9 @@ async function handleSignIn() {
     <q-page class="bg-primary row justify-center items-center">
         <div class="column">
             <div class="row justify-center">
-                <h5 class="text-h5 text-white q-my-md">Login to Obelix Homework Platform</h5>
+                <h5 class="text-h5 text-white q-my-md">
+                    Login to Obelix Homework Platform
+                </h5>
             </div>
             <div class="row justify-center">
                 <q-card square bordered class="q-pa-lg shadow-1">
@@ -34,6 +44,7 @@ async function handleSignIn() {
                                 v-model.trim="credentials.email"
                                 type="email"
                                 label="Email"
+                                autocomplete="email"
                             />
                             <q-input
                                 square
@@ -42,6 +53,7 @@ async function handleSignIn() {
                                 v-model="credentials.password"
                                 type="password"
                                 label="Password"
+                                autocomplete="current-password"
                             />
                         </q-form>
                     </q-card-section>
@@ -53,8 +65,10 @@ async function handleSignIn() {
                             class="full-width"
                             label="Log in"
                             @click="handleSignIn"
-                            :disable="!credentials.email || !credentials.password"
-                            :loading="isLoggingIn"
+                            :disable="
+                                !credentials.email || !credentials.password
+                            "
+                            :loading="loggingIn"
                         />
                     </q-card-actions>
                     <q-card-section class="text-center q-pa-none">

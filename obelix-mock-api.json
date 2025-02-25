@@ -1,0 +1,446 @@
+{
+  "uuid": "bdaa571a-a948-4815-a563-3828078f86e0",
+  "lastMigration": 33,
+  "name": "Obelix mock api",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 8080,
+  "hostname": "",
+  "folders": [
+    {
+      "uuid": "6e49657a-c7b5-45ff-8c7c-7f6d8d129018",
+      "name": "No Auth",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "5c5f6252-f6e0-415d-9e0d-93b5cb8a809b"
+        },
+        {
+          "type": "route",
+          "uuid": "4e2ce487-bfaf-4240-aa81-e53bcba0278f"
+        }
+      ]
+    },
+    {
+      "uuid": "2795bdc4-9f19-476f-bae6-63ff6b6ba59a",
+      "name": "Auth",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "c1454c10-50e9-4f60-ae7b-75eb067d5d8f"
+        },
+        {
+          "type": "folder",
+          "uuid": "7d85dfde-5876-4b4f-9e60-bba3da402012"
+        }
+      ]
+    },
+    {
+      "uuid": "7d85dfde-5876-4b4f-9e60-bba3da402012",
+      "name": "Student",
+      "children": []
+    }
+  ],
+  "routes": [
+    {
+      "uuid": "5c5f6252-f6e0-415d-9e0d-93b5cb8a809b",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "login",
+      "responses": [
+        {
+          "uuid": "571181b8-8508-46cf-8a5a-429cce750b74",
+          "body": "{\n  \"AuthToken\": \"{{data 'AuthTokens' 'student'}}\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "student",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "email",
+              "value": "student@test.com",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "password",
+              "value": "student",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "252828a9-77b5-4d19-b63f-aa3d6907e3da",
+          "body": "{\n  \"AuthToken\": \"{{data 'AuthTokens' 'teacher'}}\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "teacher",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "email",
+              "value": "teacher@test.com",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "password",
+              "value": "teacher",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "68cb84cb-294c-452b-b0ef-70254a19dd86",
+          "body": "{\n  \"AuthToken\": \"{{data 'AuthTokens' 'admin'}}\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "admin",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "email",
+              "value": "admin@test.com",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "password",
+              "value": "admin",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "ac2a3ccf-e3c4-4a7b-b130-42643a363777",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 401,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "4e2ce487-bfaf-4240-aa81-e53bcba0278f",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "register",
+      "responses": [
+        {
+          "uuid": "1aedfc29-f978-42af-82aa-f378d0176f3f",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 401,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "inviteCode",
+              "value": "",
+              "invert": false,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "7e25f63d-ad47-45bb-b3a4-d6e4d5df6c2e",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 406,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "email",
+              "value": "",
+              "invert": false,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "username",
+              "value": "",
+              "invert": false,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "9ffc0fd1-d0d0-4793-a70b-1bc5cb1cf862",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "c1454c10-50e9-4f60-ae7b-75eb067d5d8f",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "user",
+      "responses": [
+        {
+          "uuid": "aa0e43a1-1b8f-4777-838e-c4b3fe313fde",
+          "body": "{\n  \"name\": \"Student without grade 2\",\n  \"email\": \"student@test.com\",\n  \"userType\": \"student\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "student",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "Authorization",
+              "value": "Bearer {{data 'AuthTokens' 'student'}}",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "b4df344e-6900-41af-bd3b-cdb99c539939",
+          "body": "{\n  \"name\": \"The Great Teacher\",\n  \"email\": \"teacher@test.com\",\n  \"userType\": \"teacher\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "teacher",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "Authorization",
+              "value": "Bearer {{data 'AuthTokens' 'teacher'}}",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "e934c31f-70f7-4614-a385-4d5b0be301ec",
+          "body": "{\n  \"name\": \"Administrator\",\n  \"email\": \"admin@test.com\",\n  \"userType\": \"admin\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "admin",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "Authorization",
+              "value": "Bearer {{data 'AuthTokens' 'admin'}}",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "e298e7a4-d22c-4f08-b72e-177953096a03",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 401,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "folder",
+      "uuid": "6e49657a-c7b5-45ff-8c7c-7f6d8d129018"
+    },
+    {
+      "type": "folder",
+      "uuid": "2795bdc4-9f19-476f-bae6-63ff6b6ba59a"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [
+    {
+      "uuid": "575d03c8-40b5-4575-90b3-74a5b6995d5d",
+      "id": "ya4v",
+      "name": "AuthTokens",
+      "documentation": "",
+      "value": "{\n  \"student\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE3NDA0ODY1NjMsImV4cCI6MTc3MjAyMjU2MywiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsIkdpdmVuTmFtZSI6IkpvaG5ueSIsIlN1cm5hbWUiOiJSb2NrZXQifQ.ivsWt_yzmoeA175iGhsGiiMmGCxyHPe_1YPmkx01E4I\",\n  \"teacher\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE3NDA0ODY1NjMsImV4cCI6MTc3MjAyMjU2MywiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsIkdpdmVuTmFtZSI6IkpvaG5ueSIsIlN1cm5hbWUiOiJSb2NrZXQifQ.ClbrhqafmAh9I2IYXKMiDHvPv6gDfvDurB7jj1fShRc\",\n  \"admin\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE3NDA0ODY1NjMsImV4cCI6MTc3MjAyMjU2MywiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsIkdpdmVuTmFtZSI6IkpvaG5ueSIsIlN1cm5hbWUiOiJSb2NrZXQifQ.1ss2_QlQjIS2Q39WdTAGnhH0nrf4a5_Fi9ZhafH3540\"\n}"
+    }
+  ],
+  "callbacks": []
+}
