@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useUserStore } from 'src/stores/user.js'
 import { useRouter } from 'vue-router'
 
@@ -36,10 +36,17 @@ const sidebarItems = [
     },
     {
         title: 'Administrator Panel',
-        icon: '',
+        icon: 'admin_panel_settings',
         to: 'admin',
+        roles: ['admin'],
     },
 ]
+const permittedSidebarItems = computed(() => {
+    return sidebarItems.filter((item) => {
+        if (!item.roles) return true
+        return item.roles.includes(userStore.account.role)
+    })
+})
 </script>
 
 <template>
@@ -100,10 +107,11 @@ const sidebarItems = [
 
         <q-drawer show-if-above v-model="leftDrawerOpen" side="left" elevated>
             <q-list>
-                <template v-for="(item, index) in sidebarItems" :key="index">
+                <template v-for="(item, index) in permittedSidebarItems" :key="index">
                     <q-item
                         clickable
                         :to="{ name: item.to }"
+                        exact
                         @click="item.action"
                     >
                         <q-item-section avatar>

@@ -6,12 +6,12 @@ const routes = [
             {
                 path: '',
                 name: 'index',
-                component: () => import('pages/IndexPage.vue'),
+                component: () => import('src/pages/IndexPage.vue'),
             },
             {
                 path: 'admin',
                 name: 'admin',
-                component: () => import('pages/AdminPage.vue'),
+                component: () => import('src/pages/AdminPage.vue'),
                 meta: { requiredRole: 'admin' },
             }
         ],

@@ -1,25 +1,30 @@
 <script setup>
 import { useUserStore } from 'src/stores/user'
+import { computed } from 'vue'
 
 const userStore = useUserStore()
 
-const cards = [
-    {
-        color: 'positive',
-        title: 'Grade',
-        value: userStore.account.grade,
-    },
-    {
-        color: 'info',
-        title: 'Grade Count',
-        value: userStore.account.gradeCount,
-    },
-    {
-        color: 'negative',
-        title: 'Abscences',
-        value: userStore.account.abscenceCount,
-    },
-]
+const cards = computed(() => {
+    if (userStore.account.role === 'student') {
+        return [
+            {
+                color: 'positive',
+                title: 'Grade',
+                value: userStore.account.grade,
+            },
+            {
+                color: 'info',
+                title: 'Grade Count',
+                value: userStore.account.gradeCount,
+            },
+            {
+                color: 'negative',
+                title: 'Abscences',
+                value: userStore.account.abscenceCount,
+            },
+        ]
+    } else return null
+})
 </script>
 
 <template>

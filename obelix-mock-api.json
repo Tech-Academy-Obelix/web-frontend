@@ -32,6 +32,10 @@
         {
           "type": "folder",
           "uuid": "7d85dfde-5876-4b4f-9e60-bba3da402012"
+        },
+        {
+          "type": "folder",
+          "uuid": "9c7a1bfa-5ea4-4a9d-beaf-98da875dc17b"
         }
       ]
     },
@@ -39,6 +43,20 @@
       "uuid": "7d85dfde-5876-4b4f-9e60-bba3da402012",
       "name": "Student",
       "children": []
+    },
+    {
+      "uuid": "9c7a1bfa-5ea4-4a9d-beaf-98da875dc17b",
+      "name": "Admin",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "8968531a-b5cf-4e84-8fff-7717eca71028"
+        },
+        {
+          "type": "route",
+          "uuid": "7580d70e-f8ef-4004-83f2-c77654eeabca"
+        }
+      ]
     }
   ],
   "routes": [
@@ -276,7 +294,7 @@
       "responses": [
         {
           "uuid": "aa0e43a1-1b8f-4777-838e-c4b3fe313fde",
-          "body": "{\n  \"name\": \"Student without grade 2\",\n  \"email\": \"student@test.com\",\n  \"userType\": \"student\"\n}",
+          "body": "{\n  \"name\": \"Student without 2s\",\n  \"email\": \"student@test.com\",\n  \"role\": \"student\",\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "student",
@@ -303,7 +321,7 @@
         },
         {
           "uuid": "b4df344e-6900-41af-bd3b-cdb99c539939",
-          "body": "{\n  \"name\": \"The Great Teacher\",\n  \"email\": \"teacher@test.com\",\n  \"userType\": \"teacher\"\n}",
+          "body": "{\n  \"name\": \"The Great Teacher\",\n  \"email\": \"teacher@test.com\",\n  \"role\": \"teacher\"\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "teacher",
@@ -330,7 +348,7 @@
         },
         {
           "uuid": "e934c31f-70f7-4614-a385-4d5b0be301ec",
-          "body": "{\n  \"name\": \"Administrator\",\n  \"email\": \"admin@test.com\",\n  \"userType\": \"admin\"\n}",
+          "body": "{\n  \"name\": \"Administratorche\",\n  \"email\": \"admin@test.com\",\n  \"role\": \"admin\"\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "admin",
@@ -376,6 +394,76 @@
         }
       ],
       "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "7580d70e-f8ef-4004-83f2-c77654eeabca",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "admin/inviteCode",
+      "responses": [
+        {
+          "uuid": "d32741f0-f06d-490c-9096-61f3d8f91149",
+          "body": "{\n  \"inviteCode\": \"invait-kodec-123123123\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "8968531a-b5cf-4e84-8fff-7717eca71028",
+      "type": "http",
+      "documentation": "",
+      "method": "all",
+      "endpoint": "admin",
+      "responses": [
+        {
+          "uuid": "85f9f570-0736-4bf5-88c9-6aafb078df06",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 401,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "Authorization",
+              "value": "Bearer {{data 'AuthTokens' 'admin'}}",
+              "invert": true,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": "FALLBACK",
       "streamingMode": null,
       "streamingInterval": 0
     }
