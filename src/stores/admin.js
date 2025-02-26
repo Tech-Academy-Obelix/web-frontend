@@ -15,7 +15,7 @@ export const useAdminStore = defineStore('admin', () => {
                 return { success: false }
             }
         } catch (error) {
-            console.error(error)
+            return { success: false, error }
         }
     }
 

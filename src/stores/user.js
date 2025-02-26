@@ -25,7 +25,7 @@ export const useUserStore = defineStore('user', () => {
                 return { success: false }
             }
         } catch (error) {
-            console.error(error)
+            return { success: false, error }
         }
     }
 
@@ -38,16 +38,21 @@ export const useUserStore = defineStore('user', () => {
                 return { success: false }
             }
         } catch (error) {
-            console.error(error)
+            return { success: false, error }
         }
     }
 
     async function fetchUser() {
         try {
             const response = await api.get('/user')
-            account.value = response.data
+            if (response.status === 200) {
+                account.value = response.data
+                return { success: true }
+            } else {
+                return { success: false }
+            }
         } catch (error) {
-            console.error(error)
+            return { success: false, error }
         }
     }
 
