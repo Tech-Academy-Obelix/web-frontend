@@ -294,7 +294,7 @@
       "responses": [
         {
           "uuid": "aa0e43a1-1b8f-4777-838e-c4b3fe313fde",
-          "body": "{\n  \"name\": \"Student without 2s\",\n  \"email\": \"student@test.com\",\n  \"role\": \"student\",\n}",
+          "body": "{\n  \"name\": \"Student without 2s\",\n  \"email\": \"student@test.com\",\n  \"role\": \"student\"\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "student",

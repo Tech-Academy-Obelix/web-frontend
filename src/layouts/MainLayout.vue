@@ -2,6 +2,7 @@
 import { computed, ref } from 'vue'
 import { useUserStore } from 'src/stores/user.js'
 import { useRouter } from 'vue-router'
+import AppLogo from 'src/components/AppLogo.vue'
 
 const userStore = useUserStore()
 const router = useRouter()
@@ -56,11 +57,7 @@ const permittedSidebarItems = computed(() => {
                 <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
 
                 <q-toolbar-title>
-                    <q-avatar>
-                        <img
-                            src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg"
-                        />
-                    </q-avatar>
+                    <AppLogo size='md' />
                     Obelix Homework Platform
                 </q-toolbar-title>
 
@@ -79,7 +76,7 @@ const permittedSidebarItems = computed(() => {
                     </q-item-section>
                     <q-item-section>
                         <q-item-label>{{
-                            userStore.account?.name
+                            userStore.account.name
                         }}</q-item-label>
                     </q-item-section>
 

@@ -2,6 +2,7 @@
 import { reactive, ref } from 'vue'
 import { useUserStore } from 'stores/user.js'
 import { useRouter } from 'vue-router'
+import AppLogo from 'src/components/AppLogo.vue'
 
 let credentials = reactive({
     email: '',
@@ -27,11 +28,14 @@ async function handleSignIn() {
 
 <template>
     <q-page class="bg-primary row justify-center items-center">
-        <div class="column">
-            <div class="row justify-center">
-                <h5 class="text-h5 text-white q-my-md">
-                    Login to Obelix Homework Platform
-                </h5>
+        <div class="column q-pa-xl">
+            <div class="column">
+                <div class="row justify-center"><AppLogo size="8em" /></div>
+                <div class='row justify-center'>
+                    <h5 class="text-h5 text-white q-my-md">
+                        Login to Obelix Homework Platform
+                    </h5>
+                </div>
             </div>
             <div class="row justify-center">
                 <q-card square bordered class="q-pa-lg shadow-1">
@@ -74,7 +78,9 @@ async function handleSignIn() {
                     <q-card-section class="text-center q-pa-none">
                         <p class="text-grey-6">
                             Don't have an account?
-                            <router-link to="/register">Register</router-link>
+                            <router-link to="/register" class="text-accent"
+                                >Register</router-link
+                            >
                         </p>
                     </q-card-section>
                 </q-card>
