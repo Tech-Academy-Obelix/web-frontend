@@ -3,25 +3,34 @@ import { reactive, ref } from 'vue'
 import { useUserStore } from 'stores/user.js'
 import { useRouter } from 'vue-router'
 import AppLogo from 'src/components/AppLogo.vue'
+import { useQuasar } from 'quasar'
+
+const quasar = useQuasar()
+const userStore = useUserStore()
+const router = useRouter()
 
 let credentials = reactive({
     email: '',
     password: '',
 })
 
-let loggingIn = ref(false)
-const userStore = useUserStore()
-const router = useRouter()
+let loginInProgress = ref(false)
 
 async function handleSignIn() {
-    loggingIn.value = true
-    const { success } = await userStore.login(
+    loginInProgress.value = true
+    const { success, error } = await userStore.login(
         credentials.email,
         credentials.password,
     )
-    loggingIn.value = userStore.isLoggedIn
+    loginInProgress.value = false
     if (success) {
         await router.push({ name: 'index' })
+    } else {
+        quasar.notify({
+            type: 'negative',
+            message: 'Failed to login',
+            caption: error.message,
+        })
     }
 }
 </script>
@@ -72,7 +81,7 @@ async function handleSignIn() {
                             :disable="
                                 !credentials.email || !credentials.password
                             "
-                            :loading="loggingIn"
+                            :loading="loginInProgress"
                         />
                     </q-card-actions>
                     <q-card-section class="text-center q-pa-none">

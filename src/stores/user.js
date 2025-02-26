@@ -29,9 +29,13 @@ export const useUserStore = defineStore('user', () => {
         }
     }
 
-    async function register(email, inviteCode) {
+    async function register(name, email, inviteCode) {
         try {
-            const response = await api.post('/register', { email, inviteCode })
+            const response = await api.post('/register', {
+                name,
+                email,
+                inviteCode,
+            })
             if (response.status === 200) {
                 return { success: true }
             } else {

@@ -2,20 +2,43 @@
 import { reactive, ref } from 'vue'
 import { useUserStore } from 'stores/user'
 import AppLogo from 'src/components/AppLogo.vue'
+import { useQuasar } from 'quasar'
+import { useRouter } from 'vue-router'
+
+const quasar = useQuasar()
+const userStore = useUserStore()
+const router = useRouter()
 
 let credentials = reactive({
     name: '',
     email: '',
-    inviteCode: ''
+    inviteCode: '',
 })
 
-let isRegistering = ref(false)
-const userStore = useUserStore()
+let registerInProgress = ref(false)
 
 async function handleRegister() {
-    isRegistering.value = true
-    await userStore.register(credentials.email, credentials.inviteCode)
-    isRegistering.value = userStore.isLoggedIn
+    registerInProgress.value = true
+    const { success, error } = await userStore.register(
+        credentials.name,
+        credentials.email,
+        credentials.inviteCode,
+    )
+    registerInProgress.value = userStore.isLoggedIn
+    if (success) {
+        quasar.notify({
+            type: 'positive',
+            message: 'Successfully registered',
+            caption: 'Use the form to log in'
+        })
+        await router.push({ name: 'login' })
+    } else {
+        quasar.notify({
+            type: 'negative',
+            message: 'Failed to login',
+            caption: error.message,
+        })
+    }
 }
 </script>
 
@@ -79,7 +102,7 @@ async function handleRegister() {
                                 credentials.password !==
                                     credentials.repeatPassword
                             "
-                            :loading="isRegistering"
+                            :loading="registerInProgress"
                         />
                     </q-card-actions>
                     <q-card-section class="text-center q-pa-none">
