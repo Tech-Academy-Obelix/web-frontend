@@ -36,6 +36,18 @@ const sidebarItems = [
         to: 'index',
     },
     {
+        title: 'Classes',
+        icon: 'class',
+        to: 'classes',
+        children: userStore.account.classes.map((schoolClass) => {
+            return {
+                title: schoolClass.name,
+                to: 'class',
+                params: { id: schoolClass.id },
+            }
+        }),
+    },
+    {
         title: 'Administrator Panel',
         icon: 'admin_panel_settings',
         to: 'admin',
@@ -57,7 +69,7 @@ const permittedSidebarItems = computed(() => {
                 <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
 
                 <q-toolbar-title>
-                    <AppLogo size='md' />
+                    <AppLogo size="md" />
                     Obelix Homework Platform
                 </q-toolbar-title>
 
@@ -104,7 +116,10 @@ const permittedSidebarItems = computed(() => {
 
         <q-drawer show-if-above v-model="leftDrawerOpen" side="left" elevated>
             <q-list>
-                <template v-for="(item, index) in permittedSidebarItems" :key="index">
+                <template
+                    v-for="(item, index) in permittedSidebarItems"
+                    :key="index"
+                >
                     <q-item
                         clickable
                         :to="{ name: item.to }"

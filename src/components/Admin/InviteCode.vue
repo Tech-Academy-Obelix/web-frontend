@@ -20,7 +20,7 @@ const fetchCode = async () => {
         quasar.notify({
             type: 'negative',
             message: 'Failed to fetch invite code',
-            caption: error,
+            caption: error.message,
         })
     }
     isFetching.value = false
@@ -38,7 +38,7 @@ const copyCode = async () => {
         quasar.notify({
             type: 'negative',
             message: 'Failed to copy to clipboard',
-            caption: error,
+            caption: error.message,
         })
     }
 }

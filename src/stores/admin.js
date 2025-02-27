@@ -5,6 +5,14 @@ import { api } from "src/boot/axios";
 export const useAdminStore = defineStore('admin', () => {
     const userStore = useUserStore()
     
+     /**
+     * @typedef getInviteCode
+     * @type {object}
+     * @property {boolean} success
+     * @property {string} inviteCode
+     * 
+     * @returns {getInviteCode}
+     */
     async function getInviteCode() {
         try {
             const response = await api.get('/admin/inviteCode')
@@ -26,5 +34,5 @@ export const useAdminStore = defineStore('admin', () => {
 })
 
 if (import.meta.hot) {
-    import.meta.hot.accept(acceptHMRUpdate(useUserStore, import.meta.hot))
+    import.meta.hot.accept(acceptHMRUpdate(useAdminStore, import.meta.hot))
 }

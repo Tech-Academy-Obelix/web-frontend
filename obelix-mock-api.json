@@ -294,7 +294,7 @@
       "responses": [
         {
           "uuid": "aa0e43a1-1b8f-4777-838e-c4b3fe313fde",
-          "body": "{\n  \"name\": \"Student without 2s\",\n  \"email\": \"student@test.com\",\n  \"role\": \"student\"\n}",
+          "body": "{\n  \"name\": \"Student without 2s\",\n  \"email\": \"student@test.com\",\n  \"role\": \"student\",\n  \"classes\": [\n      {\n        \"name\": \"Math 7g\"\n      },\n      {\n        \"name\": \"Physics 7g\"\n      },\n      {\n        \"name\": \"Chemistry 7g\"\n      }\n    ]\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "student",
@@ -321,7 +321,7 @@
         },
         {
           "uuid": "b4df344e-6900-41af-bd3b-cdb99c539939",
-          "body": "{\n  \"name\": \"The Great Teacher\",\n  \"email\": \"teacher@test.com\",\n  \"role\": \"teacher\"\n}",
+          "body": "{\n  \"name\": \"The Great Teacher\",\n  \"email\": \"teacher@test.com\",\n  \"role\": \"teacher\",\n  \"classes\": [\n      {\n        \"name\": \"Math 7a\"\n      },\n      {\n        \"name\": \"Math 7b\"\n      },\n      {\n        \"name\": \"Math 7c\"\n      },\n      {\n        \"name\": \"Math 7d\"\n      },\n      {\n        \"name\": \"Math 7e\"\n      },\n      {\n        \"name\": \"Math 7f\"\n      }\n    ]\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "teacher",
@@ -348,7 +348,7 @@
         },
         {
           "uuid": "e934c31f-70f7-4614-a385-4d5b0be301ec",
-          "body": "{\n  \"name\": \"Administratorche\",\n  \"email\": \"admin@test.com\",\n  \"role\": \"admin\"\n}",
+          "body": "{\n  \"name\": \"Administratorche\",\n  \"email\": \"admin@test.com\",\n  \"role\": \"admin\",\n  \"classes\": [\n      {\n        \"name\": \"Math 7a\"\n      },\n      {\n        \"name\": \"Math 7b\"\n      },\n      {\n        \"name\": \"Math 7c\"\n      },\n      {\n        \"name\": \"Math 7d\"\n      },\n      {\n        \"name\": \"Math 7e\"\n      },\n      {\n        \"name\": \"Math 7f\"\n      },\n      {\n        \"name\": \"Chemistry 7a\"\n      },\n      {\n        \"name\": \"Chemistry 7b\"\n      },\n      {\n        \"name\": \"Chemistry 7c\"\n      },\n      {\n        \"name\": \"Chemistry 7d\"\n      },\n      {\n        \"name\": \"Chemistry 7e\"\n      },\n      {\n        \"name\": \"Chemistry 7f\"\n      },\n      {\n        \"name\": \"Physics 7a\"\n      },\n      {\n        \"name\": \"Physics 7b\"\n      },\n      {\n        \"name\": \"Physics 7c\"\n      },\n      {\n        \"name\": \"Physics 7d\"\n      },\n      {\n        \"name\": \"Physics 7e\"\n      },\n      {\n        \"name\": \"Physics 7f\"\n      },\n    ]\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "admin",

@@ -65,6 +65,7 @@ export const useUserStore = defineStore('user', () => {
         account.value = null
         return { success: true }
     }
+    
 
     return {
         account,
