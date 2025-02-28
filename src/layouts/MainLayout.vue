@@ -3,8 +3,10 @@ import { computed, ref } from 'vue'
 import { useUserStore } from 'src/stores/user.js'
 import { useRouter } from 'vue-router'
 import AppLogo from 'src/components/AppLogo.vue'
+import { useClassesStore } from 'src/stores/classes'
 
 const userStore = useUserStore()
+const classesStore = useClassesStore()
 const router = useRouter()
 
 const leftDrawerOpen = ref(false)
@@ -39,7 +41,7 @@ const sidebarItems = [
         title: 'Classes',
         icon: 'class',
         to: 'classes',
-        children: userStore.account.classes.map((schoolClass) => {
+        children: classesStore.classes.map((schoolClass) => {
             return {
                 title: schoolClass.name,
                 to: 'class',
